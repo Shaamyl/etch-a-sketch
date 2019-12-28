@@ -12,7 +12,7 @@ createGrid(totalBoxes);	//creating initial grid
 let chooseNumberButton = document.querySelector('.chooseNumberButton');
 
 chooseNumberButton.addEventListener('click', function listen(e) {
-	let newTotalBoxes = prompt("Enter N, the resolution of the etch-a-sketch. Max:150");
+	let newTotalBoxes = prompt("Enter N, the resolution of the etch-a-sketch. Max: 150");
 	if(newTotalBoxes === '' || isNaN(newTotalBoxes) || newTotalBoxes > 150){ //validating entered data
 		listen(e);
 		return;

@@ -73,3 +73,9 @@ body{
 	font-size:14px;
 	background-color:black;
 }
+
+img{
+	position:absolute;
+	display:block;
+	right:12%;
+}
