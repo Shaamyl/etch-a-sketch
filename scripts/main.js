@@ -2,6 +2,7 @@ let gridContainer = document.querySelector('.gridContainer');
 let totalBoxes = 2500; //default total boxes
 let resolutionStatus = document.querySelector('.resolution');
 let brush = document.querySelector('.brush');
+let isWhiteTheme = true;
 
 let isPainting = true;
 let brushText = "Brush: Black";
@@ -140,6 +141,22 @@ function slowButtonListener(e){
 				}
 			}
 		}
+	
+let themeButton = document.querySelector('.themeButton');
+themeButton.onclick = function(){
+	if(isWhiteTheme){
+		document.getElementById("pagestyle").setAttribute("href", "styles/style2.css");
+		document.querySelector('img').src = "images/title2.png";
+		themeButton.textContent = "White Theme";
+		isWhiteTheme = false;
+	}else{
+		document.getElementById("pagestyle").setAttribute("href", "styles/style.css");
+		document.querySelector('img').src = "images/title.png";
+		themeButton.textContent = "Retro Theme";
+		isWhiteTheme = true;
+	}
+};
+		
 		
 function createGrid(totalBoxes){
 	for(let i = 0; i <totalBoxes; i++){
