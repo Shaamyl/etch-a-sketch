@@ -12,8 +12,8 @@ createGrid(totalBoxes);	//creating initial grid
 let chooseNumberButton = document.querySelector('.chooseNumberButton');
 
 chooseNumberButton.addEventListener('click', function listen(e) {
-	let newTotalBoxes = prompt("Enter N, the resolution of the etch-a-sketch. Max: 150");
-	if(newTotalBoxes === '' || isNaN(newTotalBoxes) || newTotalBoxes > 150){ //validating entered data
+	let newTotalBoxes = prompt("Enter N, the resolution of the etch-a-sketch. Max: 100");
+	if(newTotalBoxes === '' || isNaN(newTotalBoxes) || newTotalBoxes > 100){ //validating entered data
 		listen(e);
 		return;
 	}else if(newTotalBoxes === null){
@@ -25,6 +25,7 @@ chooseNumberButton.addEventListener('click', function listen(e) {
 	});
 	totalBoxes = newTotalBoxes**2;
 	createGrid(totalBoxes);	//creating grid with new dimensions
+	brush.textContent= "Brush: Black";
 	gridContainer.setAttribute("style", createGridRule(totalBoxes));
 	resolutionStatus.textContent = "Resolution: " + totalBoxes**(1/2) + "x" + totalBoxes**(1/2);
 	
