@@ -1,6 +1,7 @@
 let gridContainer = document.querySelector('.gridContainer');
-let totalBoxes = 100; //default total boxes
-
+let totalBoxes = 2500; //default total boxes
+let resolutionStatus = document.querySelector('.resolution');
+let brush = document.querySelector('.brush');
 
 gridContainer.setAttribute("style", createGridRule(totalBoxes)); //adding rule to make grid container's columns equal to totalBoxes**(1/2)
 
@@ -23,6 +24,7 @@ chooseNumberButton.addEventListener('click', function listen(e) {
 	totalBoxes = newTotalBoxes**2;
 	createGrid(totalBoxes);	//creating grid with new dimensions
 	gridContainer.setAttribute("style", createGridRule(totalBoxes));
+	resolutionStatus.textContent = "Resolution: " + totalBoxes**(1/2) + "x" + totalBoxes**(1/2);
 	
 });
 
@@ -41,6 +43,7 @@ clearButton.addEventListener('click', (e1) => {
 let rainbowButton = document.querySelector('.rainbowButton');
 
 rainbowButton.addEventListener('click', (e1) => {
+	brush.textContent="Brush: Rainbow";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener); //remove any previous listeners attached to div
@@ -62,6 +65,7 @@ function rainbowButtonListener(e){ //listener attached to each div when rainbowB
 let blackButton = document.querySelector('.blackButton');
 
 blackButton.addEventListener('click', (e1) => {
+	brush.textContent="Brush: Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener);
@@ -79,6 +83,7 @@ function blackButtonListener(e){
 let slowButton = document.querySelector('.slowButton');
 
 slowButton.addEventListener('click', (e1) => {
+	brush.textContent="Brush: Slow Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener);
@@ -90,6 +95,7 @@ slowButton.addEventListener('click', (e1) => {
 });
 
 function slowButtonListener(e){
+	
 			let currentColor = window.getComputedStyle(e.target ,null).getPropertyValue('background-color');
 			if(currentColor === "rgba(0, 0, 0, 0)"){
 				e.target.style.backgroundColor = "rgba(0,0,0,0.1)";
