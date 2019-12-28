@@ -25,6 +25,8 @@ chooseNumberButton.addEventListener('click', function listen(e) {
 	});
 	totalBoxes = newTotalBoxes**2;
 	createGrid(totalBoxes);	//creating grid with new dimensions
+	brushText = "Brush: Black";
+	if(isPainting)
 	brush.textContent= "Brush: Black";
 	gridContainer.setAttribute("style", createGridRule(totalBoxes));
 	resolutionStatus.textContent = "Resolution: " + totalBoxes**(1/2) + "x" + totalBoxes**(1/2);
@@ -41,11 +43,15 @@ clearButton.addEventListener('click', (e1) => {
 		gridContainer.removeChild(div);
 	});
 	createGrid(totalBoxes);
+	brushText = "Brush: Black";
+	if(isPainting)
+	brush.textContent= "Brush: Black";
 });
 
 let rainbowButton = document.querySelector('.rainbowButton');
 
 rainbowButton.addEventListener('click', (e1) => {
+	if(isPainting)
 	brush.textContent="Brush: Rainbow";
 	brushText = "Brush: Rainbow";
 	let divs = document.querySelectorAll('.gridContainer>div');
@@ -69,6 +75,7 @@ function rainbowButtonListener(e){ //listener attached to each div when rainbowB
 let blackButton = document.querySelector('.blackButton');
 
 blackButton.addEventListener('click', (e1) => {
+	if(isPainting)
 	brush.textContent="Brush: Black";
 	brushText = "Brush: Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
@@ -89,6 +96,7 @@ function blackButtonListener(e){
 let slowButton = document.querySelector('.slowButton');
 
 slowButton.addEventListener('click', (e1) => {
+	if(isPainting)
 	brush.textContent="Brush: Slow Black";
 	brushText = "Brush: Slow Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
