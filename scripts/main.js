@@ -3,6 +3,8 @@ let totalBoxes = 2500; //default total boxes
 let resolutionStatus = document.querySelector('.resolution');
 let brush = document.querySelector('.brush');
 
+let isPainting = true;
+let brushText = "Brush: Black";
 gridContainer.setAttribute("style", createGridRule(totalBoxes)); //adding rule to make grid container's columns equal to totalBoxes**(1/2)
 
 createGrid(totalBoxes);	//creating initial grid
@@ -44,6 +46,7 @@ let rainbowButton = document.querySelector('.rainbowButton');
 
 rainbowButton.addEventListener('click', (e1) => {
 	brush.textContent="Brush: Rainbow";
+	brushText = "Brush: Rainbow";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener); //remove any previous listeners attached to div
@@ -58,14 +61,15 @@ function rainbowButtonListener(e){ //listener attached to each div when rainbowB
 			let r = Math.random()*256;
 			let g = Math.random()*256;
 			let b = Math.random()*256;
+			if(isPainting)
 			e.target.style.backgroundColor = "rgb("+r+","+g+","+b+")";
-			console.log('here');
 		}
 
 let blackButton = document.querySelector('.blackButton');
 
 blackButton.addEventListener('click', (e1) => {
 	brush.textContent="Brush: Black";
+	brushText = "Brush: Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener);
@@ -77,6 +81,7 @@ blackButton.addEventListener('click', (e1) => {
 });
 
 function blackButtonListener(e){
+			if(isPainting)
 			e.target.style.backgroundColor = "#000";
 		}
 		
@@ -84,6 +89,7 @@ let slowButton = document.querySelector('.slowButton');
 
 slowButton.addEventListener('click', (e1) => {
 	brush.textContent="Brush: Slow Black";
+	brushText = "Brush: Slow Black";
 	let divs = document.querySelectorAll('.gridContainer>div');
 	divs.forEach((div) => {
 		div.removeEventListener('mouseenter', rainbowButtonListener);
@@ -97,30 +103,32 @@ slowButton.addEventListener('click', (e1) => {
 function slowButtonListener(e){
 	
 			let currentColor = window.getComputedStyle(e.target ,null).getPropertyValue('background-color');
-			if(currentColor === "rgba(0, 0, 0, 0)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,0.1)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.1)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.2)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.2)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.3)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.3)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.4)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.4)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.5)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.5)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.6)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.6)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.7)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.7)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.8)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.8)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,.9)";
-			}else if(currentColor === "rgba(0, 0, 0, 0.9)"){
-				e.target.style.backgroundColor = "rgba(0,0,0,1)";
-			}else if(currentColor === "rgb(0, 0, 0)"){
-				
-			}else{
-				e.target.style.backgroundColor = "rgba(0,0,0,0.1)";
+			if(isPainting){
+				if(currentColor === "rgba(0, 0, 0, 0)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,0.1)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.1)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.2)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.2)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.3)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.3)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.4)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.4)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.5)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.5)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.6)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.6)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.7)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.7)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.8)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.8)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,.9)";
+				}else if(currentColor === "rgba(0, 0, 0, 0.9)"){
+					e.target.style.backgroundColor = "rgba(0,0,0,1)";
+				}else if(currentColor === "rgb(0, 0, 0)"){
+					
+				}else{
+					e.target.style.backgroundColor = "rgba(0,0,0,0.1)";
+				}
 			}
 		}
 		
@@ -129,11 +137,21 @@ function createGrid(totalBoxes){
 		let div = document.createElement('div');
 		div.classList.add('gridBox');
 		div.addEventListener('mouseenter', createGridListener);
+		div.addEventListener('click', (e) => {
+			if(isPainting === true){
+				isPainting = false;
+				brush.textContent = "Brush: Off";
+			}else{
+				isPainting = true;
+				brush.textContent = brushText;
+			}
+		});
 		gridContainer.appendChild(div);	
 	}
 }
 
 function createGridListener(e) {  //initial listener attached to each div in the grid
+			if(isPainting)
 			e.target.style.backgroundColor = "#000";
 		}
 

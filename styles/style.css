@@ -68,3 +68,8 @@ body{
 	margin-bottom:30px;
 	margin-left:20px;
 }
+
+.statusBar .message{
+	font-size:14px;
+	background-color:black;
+}
