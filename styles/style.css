@@ -1,0 +1,42 @@
+.gridContainer{
+	display:grid;
+	position:absolute;
+	margin: 0;
+	top: 47%;
+	left: 50%;
+	width:570px;
+	height:570px;
+	transform: translate(-50%, -50%);
+	border: 1px solid black;
+	
+}
+
+.gridBox{
+	display:grid;
+		
+}
+
+.navBar{
+	position:absolute;
+	bottom:0;
+	margin-bottom:40px;
+	margin-left:20px;
+	
+}
+
+.chooseNumberButton, .clearButton, .rainbowButton, .blackButton, .slowButton{
+	display:inline;
+	background-color:#4285f4;
+	color:white;
+	font-weight:bold;
+	padding: 12px;
+	border: 1px solid #4285f4;
+	border-radius:4px;
+	margin-right:20px;
+}
+.chooseNumberButton:hover, .clearButton:hover, .rainbowButton:hover, .blackButton:hover, .slowButton:hover{
+	color:white;
+	text-decoration:none;
+	cursor:pointer;
+	border:0.3px solid #000;
+}
