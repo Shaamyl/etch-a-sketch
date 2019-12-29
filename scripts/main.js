@@ -41,12 +41,8 @@ let clearButton = document.querySelector('.clearButton');
 clearButton.addEventListener('click', (e1) => {
 	let oldDivs = document.querySelectorAll('.gridContainer>div');
 	oldDivs.forEach((div) => {
-		gridContainer.removeChild(div);
+		div.style.backgroundColor="#FFF";
 	});
-	createGrid(totalBoxes);
-	brushText = "Brush: Black";
-	if(isPainting)
-	brush.textContent= "Brush: Black";
 });
 
 let rainbowButton = document.querySelector('.rainbowButton');
